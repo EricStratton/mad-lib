@@ -1,19 +1,21 @@
 $(document).ready(function() {
-  $("#formOne").submit(function() {
-    const person1Input = $("input#person1").val();
-    const person2Input = $("input#person2").val();
-    const animalInput= $("input#animal").val();
-    const exclamationInput = $("input#exclamation").val();
-    const verbInput = $("input#verb").val();
-    const nounInput = $("input#noun").val();
+  $("#formOne").submit(function(event) {
+    event.preventDefault();
+    const person1Input = {value: $("input#person1").val(), class: $(".person1")};
+    const person2Input = {value: $("input#person2").val(), class: $(".person2")};
+    const animalInput= {value: $("input#animal").val(), class: $(".animal")};
+    const exclamationInput ={value: $("input#exclamation").val(), class: $(".exclamation")};
+    const verbInput = {value: $("input#verb").val(), class:$(".verb")};
+    const nounInput = {value: $("input#noun").val(), class:$(".noun")};
 
-    $("person1").text(person1Input);
-    $(".person2").text(person2Input);
-    $(".animal").text(animalInput);
-    $(".exclamation").text(exclamationInput);
-    $(".verb").text(verbInput);
-    $(".noun").text(nounInput);
+    const inputs = [person1Input, person2Input, animalInput, exclamationInput, verbInput, nounInput];
+    console.log(inputs);
+    
 
-    $("#story").sho();
+    inputs.forEach(function(input) {
+      $(input.class).text(input.value);
+    })
+
+    $("#story").show();
   });
 });
